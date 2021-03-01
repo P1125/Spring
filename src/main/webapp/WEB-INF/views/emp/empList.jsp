@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head><title>emp/deptList.jsp</title>
+<head><title>emp/empList.jsp</title>
 </head>
 <body>
 <h3>사원목록</h3>

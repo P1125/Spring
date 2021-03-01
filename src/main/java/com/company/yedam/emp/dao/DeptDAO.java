@@ -52,6 +52,43 @@ public class DeptDAO {
 	}
 	
 	
+	public void update(DeptVO vo) {
+		try {
+			JdbcUtil.connect();
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.disconnect(conn);
+		}
+		
+	}
+	
+	public void insert(DeptVO vo) {
+		try {
+			conn=JdbcUtil.connect();
+			String sql = "INSERT INTO DEPARTMENTS("
+					+ " DEPARTMENT_ID,"
+					+ " DEPARTMENT_NAME,"
+					+ " MANAGER_ID)"
+					+ " VALUES(?,?,?)";
+			 pstmt = conn.prepareStatement(sql);
+			 
+			 pstmt.setString(1, vo.getDepartment_id());
+			 pstmt.setString(2, vo.getDepartment_name());
+			 pstmt.setString(3, vo.getManager_id());
+			 
+			 int  r = pstmt.executeUpdate();
+			 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.disconnect(conn);
+		}
+	}
+	
+	
 	
 
 }
