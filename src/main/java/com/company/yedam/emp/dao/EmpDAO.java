@@ -6,20 +6,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /*
  * VO : Value Object == EmpDTO, EmoDO, Emp
  * DAO : Data Access Object
  */
-@Component 
+@Repository // Component  inherit
 public class EmpDAO {
 	
 	Connection conn;
 	PreparedStatement pstmt;
-	
-	
-	
-	
 	
 	//전체 조회 select * from employees
 	public ArrayList<EmpVO> selectList(){
@@ -89,6 +86,11 @@ public class EmpDAO {
 				vo.setFirst_name(rs.getString("FIRST_NAME"));
 				vo.setLast_name(rs.getString("LAST_NAME"));
 				vo.setEmail(rs.getString("EMAIL"));
+				vo.setPhone_number(rs.getString("PHONE_NUMBER"));
+				vo.setHire_date(rs.getDate("HIRE_DATE"));
+				vo.setJob_id(rs.getString("JOB_ID"));
+				vo.setManager_id(rs.getString("MANAGER_ID"));
+				vo.setDepartment_id(rs.getString("DEPARTMENT_ID"));
 				
 			}
 			
@@ -150,9 +152,26 @@ public class EmpDAO {
 			//1. connect(연결)
 			JdbcUtil.connect();
 			//2.statement(구문) 실행할 sql구문
-			
+			String sql = "UPDATE SET  EMPLOYEES( "
+					+ "	EMPLOYEE_ID,"
+					+ " FIRST_NAME,"
+					+ " LAST_NAME,"
+					+ " EMAIL,"
+					+ " PHONE_NUMBER,"
+					+ " HIRE_DATE,"
+					+ " JOB_ID)"
+					+ " VALUES(?,?,?,?,?,?,?)";
+			PreparedStatement pstmt= conn.prepareStatement(sql); 
 			//3.execute(실행)
+			pstmt.setString(1, vo.getEmployee_id());
+			pstmt.setString(2, vo.getFirst_name());
+			pstmt.setString(3, vo.getLast_name());
+			pstmt.setString(4, vo.getEmail());
+			pstmt.setString(5, vo.getPhone_number());
+			pstmt.setDate(6, vo.getHire_date());
+			pstmt.setString(7, vo.getJob_id());
 			
+			int r = pstmt.executeUpdate();
 			//4.resultset(select라면 조회결과처리 없으면 skip)
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -88,6 +88,29 @@ public class DeptDAO {
 		}
 	}
 	
+	public DeptVO selectOne(String id) {
+		DeptVO vo = null;
+		try {
+			conn = JdbcUtil.connect();
+			String sql = "SELECT DEPARTMENT_ID,"
+					+ " DEPARTMENT_ID"
+					+ " FROM departments"
+					+ " WHERE department_id=?";
+			pstmt = conn.prepareStatement(sql);
+		
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new DeptVO();
+				vo.setDepartment_id(rs.getString("DEPARTMENT_ID"));
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage()); 
+		}finally {
+			JdbcUtil.disconnect(conn);
+		}
+		return vo;
+	}
 	
 	
 

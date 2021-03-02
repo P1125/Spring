@@ -1,4 +1,4 @@
-package common;
+package com.company.yedam.common;
 
 import java.util.Date;
 import java.text.ParseException; 

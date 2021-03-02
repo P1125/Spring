@@ -20,7 +20,7 @@ import com.company.yedam.emp.dao.EmpVO;
 /**
  * Handles requests for the application home page.
  */
-@Controller
+@Controller // 1 Component  1 bean  registration
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
