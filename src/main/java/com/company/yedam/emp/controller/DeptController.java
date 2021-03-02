@@ -16,10 +16,9 @@ public class DeptController {
 	
 	@Autowired DeptService deptService;
 	
-	@RequestMapping("/deptList")
-	public String deptList(Model model) {
-		model.addAttribute("list", deptService.de)
+	//@RequestMapping("/deptList")
+	//public String deptList(Model model) {
+	//	model.addAttribute("list", deptService.de) }
 	}
 	
 	
-}
